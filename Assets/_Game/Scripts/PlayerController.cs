@@ -5,24 +5,32 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] Rigidbody rb;
     [SerializeField] float speed;
-
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] Rigidbody rb;
 
     private void Update()
     {
         if (Input.GetMouseButton(0))
         {
-            rb.velocity = JoystickController.direct * speed + rb.velocity.y * Vector3.up;
-           //rigid body velocity of player equal as joystickcontroller class direct, multiple with speed plus with rb velocty.y + vector3.up so they dont conflict with it own y axi
+            Vector3 nextPoint = JoystickController.direct * speed * Time.deltaTime + transform.position;
+            transform.position = CheckGround(nextPoint);
+            //rb.velocity = JoystickController.direct * speed + rb.velocity.y * Vector3.up;
         }
-        if (Input.GetMouseButtonUp(0))
-        {
-            rb.velocity = Vector3.zero;
-        }
+        //if (Input.GetMouseButtonUp(0))
+        //{
+        //    rb.velocity = Vector3.zero;
+        //}
     }
 
+    public Vector3 CheckGround (Vector3 nextPoint)
+    {
+        RaycastHit hit;
 
-
-
+        if (Physics.Raycast(nextPoint, Vector3.down, out hit, 2f, groundLayer))
+        {
+           return hit.point + Vector3.up * 1.1f; 
+        }
+        return transform.position;
+    }
 }

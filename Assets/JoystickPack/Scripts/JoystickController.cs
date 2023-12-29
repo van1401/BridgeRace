@@ -62,7 +62,6 @@ public class JoystickController : MonoBehaviour
     }
 
 
-
     private void OnDisable()
     {
         direct = Vector3.zero;
