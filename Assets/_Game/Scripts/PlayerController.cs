@@ -1,13 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : ColorObject
 {
 
     [SerializeField] float speed;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Rigidbody rb;
+
+    public Stage stage;
+
+
+    private List<PlayerBrick> playerBricks = new List<PlayerBrick> ();
+    [SerializeField] PlayerBrick playerBrickPrefab;
+    [SerializeField] Transform brickHolder;
+    [SerializeField] Transform skin;
+
+
+
+    private void Start()
+    {
+        ChangeColor(ColorType.Blue);
+    }
 
     private void Update()
     {
@@ -15,13 +32,52 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 nextPoint = JoystickController.direct * speed * Time.deltaTime + transform.position;
             transform.position = CheckGround(nextPoint);
-            //rb.velocity = JoystickController.direct * speed + rb.velocity.y * Vector3.up;
+            skin.forward = JoystickController.direct;
         }
-        //if (Input.GetMouseButtonUp(0))
-        //{
-        //    rb.velocity = Vector3.zero;
-        //}
     }
+
+    void AddBrick()
+    {
+        PlayerBrick playerBrick = Instantiate(playerBrickPrefab, brickHolder);
+        playerBrick.ChangeColor(colorType);
+        playerBrick.transform.position = Vector3.up * 0.25f * playerBricks.Count;
+        playerBricks.Add(playerBrick);
+    }
+
+    void RemoveBrick()
+    {
+        if(playerBricks.Count > 0) 
+        {
+            PlayerBrick playerBrick = playerBricks[playerBricks.Count - 1];
+            playerBricks.RemoveAt(playerBricks.Count - 1);
+            Destroy(playerBrick.gameObject);
+        }
+    }
+
+    void ClearBrick()
+    {
+        for(int i = 0; i< playerBricks.Count; i++)
+        {
+            Destroy(playerBricks[i]);
+        }
+        playerBricks.Clear();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Brick"))
+        {
+            Brick brick = other.GetComponent<Brick>();
+            if(brick.colorType == colorType)
+            {
+                Destroy(brick.gameObject);
+                AddBrick();
+            }
+        }
+    }
+
+
+
 
     public Vector3 CheckGround (Vector3 nextPoint)
     {
