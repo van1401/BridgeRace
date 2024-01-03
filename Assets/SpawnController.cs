@@ -17,7 +17,7 @@ public class SpawnController : MonoBehaviour
             {
                
                 GameObject obj = Instantiate(brick, origin, transform.rotation, transform);
-                origin = new Vector3(transform.position.x  + (i*1.25f), 0.1f, transform.position.z + (j*1.25f));
+                origin = new Vector3(transform.position.x  + (i*1.25f), 0.5f, transform.position.z + (j*1.25f));
                 obj.transform.position = origin;
             }
         }

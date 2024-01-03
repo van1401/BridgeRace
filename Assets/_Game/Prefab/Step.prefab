@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 254226703358895318}
   - component: {fileID: 254226703358895305}
   - component: {fileID: 8195265462648070193}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Step
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 5889901047888819510}
   m_Layer: 0
   m_Name: Skin
-  m_TagString: Brick
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
