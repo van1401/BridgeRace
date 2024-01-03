@@ -9,4 +9,6 @@ public class Brick : ColorObject
         ChangeColor((ColorType)Random.Range(2, 5));
     }
 
+
+
 }
