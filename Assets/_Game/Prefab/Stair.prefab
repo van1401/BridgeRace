@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 927445651542683306}
   - component: {fileID: 927445651542683311}
   - component: {fileID: 927445651542683304}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: stair handles 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 927445652334520987}
   - component: {fileID: 927445652334520984}
   - component: {fileID: 927445652334520985}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: stair handles 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 2622759256372074067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 0.3, z: 10}
+  m_LocalScale: {x: 3.3, y: 0.3, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4768442161727592364}
