@@ -8,8 +8,16 @@ public class SpawnController : MonoBehaviour
     [Range(1, 10)]
     public int width, height;
     public GameObject brick;
+    public GameObject [] stage;
 
     void Start()
+    {
+        SpawnBrick();
+        SpawnStage();
+    }
+
+
+    void SpawnBrick()
     {
         for (int i = -4; i < width; i++)
         {
@@ -28,5 +36,11 @@ public class SpawnController : MonoBehaviour
                 stage2.transform.position = newpos2;
             }
         }
+    }    
+    void SpawnStage()
+    {
+        Instantiate(stage[0], rootPos[0], transform.rotation, transform);
+        Instantiate(stage[1], rootPos[1], transform.rotation, transform);
+        Instantiate(stage[2], rootPos[2], transform.rotation, transform);
     }
 }

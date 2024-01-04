@@ -7,10 +7,12 @@ public class Brick : ColorObject
     private void Start()
     {
         ChangeColor((ColorType)Random.Range(2, 5));
-        Invoke("SetActive", 5.0f);
-
     }
- 
+
+    private void OnDisable()
+    {
+        Invoke("SetActive", 3.5f);
+    }
 
     void SetActive()
     {

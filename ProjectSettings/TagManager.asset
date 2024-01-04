@@ -7,6 +7,7 @@ TagManager:
   - Floor
   - Brick
   - BlueBrick
+  - Stage
   layers:
   - Default
   - TransparentFX
