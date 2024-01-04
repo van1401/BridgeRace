@@ -6,7 +6,8 @@ public class Brick : ColorObject
 {
     private void Start()
     {
-        ChangeColor((ColorType)Random.Range(2, 5));
+        ChangeColor((ColorType)Random.Range(2, 6));
+        
     }
 
     private void OnDisable()
@@ -19,7 +20,7 @@ public class Brick : ColorObject
         if (this.gameObject.activeSelf == false)
         {
             this.gameObject.SetActive(true);
-            ChangeColor((ColorType)Random.Range(2, 5));
+            ChangeColor((ColorType)Random.Range(2, 6));
         }   
     }
 }
