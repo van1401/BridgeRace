@@ -16,7 +16,7 @@ public class Character : ColorObject
 
     private void Start()
     {
-        ChangeColor((ColorType)Random.Range(2, 6));
+
     }
 
     private void Update()
@@ -42,14 +42,6 @@ public class Character : ColorObject
         }
     }
 
-    void ClearBrick()
-    {
-        for (int i = 0; i < playerBricks.Count; i++)
-        {
-            Destroy(playerBricks[i]);
-        }
-        playerBricks.Clear();
-    }
 
     private void OnTriggerEnter(Collider other)
     {

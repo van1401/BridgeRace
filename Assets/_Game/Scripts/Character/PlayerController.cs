@@ -7,8 +7,10 @@ public class PlayerController : Character
 {
     [SerializeField] float speed;
 
-
-
+    private void Start()
+    {
+        ChangeColor(ColorType.Blue);
+    }
 
     private void Update()
     {

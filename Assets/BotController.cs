@@ -9,39 +9,38 @@ public class BotController : Character
     [SerializeField] Vector3 destination;
 
 
-    private void Start()
+    public void Start()
     {
+        ChangeColor((ColorType)Random.Range(2, 6));
         myNavMeshAgent.SetDestination(destination);
     }
 
-    IState<BotController> currentState;
+    //IState<BotController> currentState;
 
 
 
     private void Update()
     {
-        if (currentState != null) 
-        {
-            currentState.OnExecute(this);    
-        }
+        //if (currentState != null) 
+        //{
+        //    currentState.OnExecute(this);    
+        //}
     }
 
 
-    public void ChangeState(IState<BotController> state)
-    {
-        if (currentState != null) 
-        {
-            currentState.OnExit(this);
-        }
+    //public void ChangeState(IState<BotController> state)
+    //{
+    //    if (currentState != null) 
+    //    {
+    //        currentState.OnExit(this);
+    //    }
 
-        currentState = state;
+    //    currentState = state;
 
-        if(currentState != null)
-        {
-            currentState.OnEnter(this);
-        }
-    }
-
-
+    //    if(currentState != null)
+    //    {
+    //        currentState.OnEnter(this);
+    //    }
+    //}
 
 }
