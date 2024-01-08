@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnController : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class SpawnController : MonoBehaviour
     public int width, height;
     public GameObject brick;
     public GameObject [] stage;
+    
+
 
     void Start()
     {
         SpawnBrick();
-        SpawnStage();
+
     }
 
 
@@ -37,10 +40,4 @@ public class SpawnController : MonoBehaviour
             }
         }
     }    
-    void SpawnStage()
-    {
-        Instantiate(stage[0], rootPos[0], transform.rotation, transform);
-        Instantiate(stage[1], rootPos[1], transform.rotation, transform);
-        Instantiate(stage[2], rootPos[2], transform.rotation, transform);
-    }
 }
