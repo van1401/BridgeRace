@@ -9,10 +9,11 @@ public class ColorObject : MonoBehaviour
     [SerializeField] private ColorData colorData;
     [SerializeField] private MeshRenderer meshRenderer;
 
-    public void ChangeColor(ColorType colorType)
+
+    public virtual void ChangeColor(ColorType colorType)
     {
+
         this.colorType = colorType;
         meshRenderer.material = colorData.GetColorMat(colorType);
     }
-
 }

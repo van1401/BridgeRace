@@ -10,6 +10,7 @@ public class ColorData : ScriptableObject
 
     public Material GetColorMat(ColorType colorType)
     {
+
         return colorMats[(int)colorType];
     }
 }

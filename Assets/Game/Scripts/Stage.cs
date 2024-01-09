@@ -54,7 +54,5 @@ public class Stage : MonoBehaviour
             brick.ChangeColor(colorType);
             emptyPoint.RemoveAt(random);
         }
-
-
     }
 }
