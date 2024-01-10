@@ -24,7 +24,7 @@ public class Character : ColorObject
 
     }
 
-    void AddBrick()
+    protected void AddBrick()
     {
         PlayerBrick playerBrick = Instantiate(playerBrickPrefab, brickHolder);
         playerBrick.ChangeColor(colorType);

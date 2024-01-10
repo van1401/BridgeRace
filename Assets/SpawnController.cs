@@ -3,10 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum ColorType
+{
+    Default,
+    Black,
+    Red,
+    Blue,
+    Green,
+    Yellow,
+    Orange,
+    Brown,
+}
+
 public class SpawnController : MonoBehaviour
 {
-    public List<Vector3> rootPos;
-    public List<Vector3> botPos;
+    public List<Vector3> rootPos = new List<Vector3>();
+    public List<Vector3> botPos = new List<Vector3>();
     [Range(1, 10)]
     public int width, height;
     public GameObject brickPrefab;
@@ -14,10 +26,13 @@ public class SpawnController : MonoBehaviour
 
 
 
+
+
     void Start()
     {
         SpawnBrick();
         SpawnBot();
+
     }
 
 
@@ -39,7 +54,7 @@ public class SpawnController : MonoBehaviour
 
     void SpawnBot()
     {
-        List<int> getColor = new List<int>(); //Tạo List get màu
+        List<int> getColor = new List<int>(); //Tạo List get màu 
         int randomNumber = Random.Range(4, 7); // tạo số random từ 2 ~ 6
         for (int i = 0; i < botPos.Count; i++) // Vòng lặp for dùng để đếm bot
         {
@@ -51,5 +66,9 @@ public class SpawnController : MonoBehaviour
             getColor.Add(randomNumber); //sau khi bỏ số ra thì chọn 1 số mới
             bot.ChangeColor((ColorType)randomNumber); // đổi màu bot bằng số 
         }
+    }
+    internal Vector3 SeekBrickPoint(ColorType colorType)
+    {
+        throw new System.NotImplementedException();
     }
 }
