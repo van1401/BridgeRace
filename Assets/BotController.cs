@@ -8,17 +8,16 @@ public class BotController : Character
 {
     [SerializeField] NavMeshAgent myNavMeshAgent;
     [SerializeField] Vector3 destination;
-    int targetNumBrick;
+    public int targetNumBrick;
 
 
 
 
     public void Start()
     {
-  
-        //CollectingBrick();
+        SeekBrickPoint();
         targetNumBrick = Random.Range(10, 20);
-        myNavMeshAgent.SetDestination(destination);
+        //myNavMeshAgent.SetDestination(destination);
     }
 
 
@@ -36,36 +35,34 @@ public class BotController : Character
         }
     }
 
-    void CollectingBrick()
+    void SeekBrickPoint()
     {
-        if (gameObject.GetComponent<Brick>().transform.position == null)
+        var brickCount = spawnController.Instance.brick.Count;
+
+        for (int i = 0; i < brickCount; i++)
         {
-            return;
-        }
-        Vector3 nextPos = gameObject.GetComponent<Brick>().transform.position;
-        myNavMeshAgent.destination = nextPos;
-
-    }
-
-
-
-    public GameObject FindClosestBrick(Transform Container)
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Brick");
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in gos)
-        {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
+            if (spawnController.Instance.brick[i].colorType == colorType)
             {
-                closest = go;
-                distance = curDistance;
+                myNavMeshAgent.destination = spawnController.Instance.brick[i].transform.position;
+                break;
             }
         }
-        return closest;
+    }
+    Transform GetClosestBrick(Transform[] brick)
+    {
+        Transform bestTarget = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+        foreach (Transform potentialTarget in brick)
+        {
+            Vector3 directionToTarget = potentialTarget.position - currentPosition;
+            float dSqrToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrToTarget < closestDistanceSqr)
+            {
+                closestDistanceSqr = dSqrToTarget;
+                bestTarget = potentialTarget;
+            }
+        }
+        return bestTarget;
     }
 }

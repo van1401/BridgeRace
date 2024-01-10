@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using LTAUnityBase.Base.DesignPattern;
 
 public enum ColorType
 {
@@ -19,20 +20,29 @@ public class SpawnController : MonoBehaviour
 {
     public List<Vector3> rootPos = new List<Vector3>();
     public List<Vector3> botPos = new List<Vector3>();
+    public List<Brick> brick = new List<Brick>();
     [Range(1, 10)]
     public int width, height;
-    public GameObject brickPrefab;
+    public Brick brickPrefab;
     public BotController botPrefab;
+    public static SpawnController Instance;
 
 
 
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
 
     void Start()
     {
         SpawnBrick();
         SpawnBot();
-
     }
 
 
@@ -44,9 +54,10 @@ public class SpawnController : MonoBehaviour
             {
                 for (int k = 0; k < rootPos.Count; k++)
                 {
-                    GameObject stage = Instantiate(brickPrefab, rootPos[k], transform.rotation, transform);
+                    Brick bricks = Instantiate(brickPrefab, rootPos[k], transform.rotation, transform);
                     Vector3 newpos = new Vector3(rootPos[k].x + (i * 1.25f), rootPos[k].y + 0.5f, rootPos[k].z + (j * 1.25f));
-                    stage.transform.position = newpos;
+                    bricks.transform.position = newpos;
+                    brick.Add(bricks);
                 }
             }
         }
@@ -67,8 +78,9 @@ public class SpawnController : MonoBehaviour
             bot.ChangeColor((ColorType)randomNumber); // đổi màu bot bằng số 
         }
     }
-    internal Vector3 SeekBrickPoint(ColorType colorType)
-    {
-        throw new System.NotImplementedException();
-    }
+}
+
+public class spawnController : SingletonMonoBehaviour<SpawnController>
+{
+
 }

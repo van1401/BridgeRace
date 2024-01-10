@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -881,12 +881,10 @@ MonoBehaviour:
   - {x: 2, y: 1, z: -8}
   - {x: -2, y: 1, z: -8}
   - {x: 4, y: 1, z: -8}
-  brickContainer:
-  - {fileID: 0}
-  - {fileID: 0}
+  brick: []
   width: 5
   height: 5
-  brickPrefab: {fileID: 3024491180294815821, guid: 6d06512195d55614a90f41cf0c2514d6, type: 3}
+  brickPrefab: {fileID: 6446262956845603252, guid: 6d06512195d55614a90f41cf0c2514d6, type: 3}
   botPrefab: {fileID: 2590151369006005217, guid: cc0d5339f4297e14e995ae6042f4b88f, type: 3}
 --- !u!1 &1740720771
 GameObject:
