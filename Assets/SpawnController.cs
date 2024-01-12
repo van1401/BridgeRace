@@ -78,6 +78,7 @@ public class SpawnController : MonoBehaviour
             bot.ChangeColor((ColorType)randomNumber); // đổi màu bot bằng số 
         }
     }
+
 }
 
 public class spawnController : SingletonMonoBehaviour<SpawnController>

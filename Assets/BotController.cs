@@ -15,9 +15,17 @@ public class BotController : Character
 
     public void Start()
     {
-        SeekBrickPoint();
         targetNumBrick = Random.Range(10, 20);
         //myNavMeshAgent.SetDestination(destination);
+    }
+    private void Update()
+    {
+        Debug.Log(myNavMeshAgent.remainingDistance);
+    if (myNavMeshAgent.remainingDistance <= 0.1f)
+        {
+            SeekBrickPoint();
+        }
+
     }
 
 
@@ -37,30 +45,36 @@ public class BotController : Character
 
     void SeekBrickPoint()
     {
-        var brickCount = spawnController.Instance.brick.Count;
-
-        for (int i = 0; i < brickCount; i++)
+        var target = GetClosestBrick(spawnController.Instance.brick);
+        if (target == null)
         {
-            if (spawnController.Instance.brick[i].colorType == colorType)
-            {
-                myNavMeshAgent.destination = spawnController.Instance.brick[i].transform.position;
-                break;
-            }
+            return;
         }
+        myNavMeshAgent.destination = target.position;
     }
-    Transform GetClosestBrick(Transform[] brick)
+
+    Transform GetClosestBrick(List<Brick> brick)
     {
         Transform bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
-        foreach (Transform potentialTarget in brick)
+        for (int i = 0; i < brick.Count; i++)
         {
-            Vector3 directionToTarget = potentialTarget.position - currentPosition;
+            Brick potentialTarget = brick[i];
+            if (potentialTarget.colorType != colorType)
+            {
+                continue;
+            }
+            if (!potentialTarget.gameObject.activeSelf)
+            {
+                continue;
+            }
+            Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
             float dSqrToTarget = directionToTarget.sqrMagnitude;
             if (dSqrToTarget < closestDistanceSqr)
             {
                 closestDistanceSqr = dSqrToTarget;
-                bestTarget = potentialTarget;
+                bestTarget = potentialTarget.transform;
             }
         }
         return bestTarget;
