@@ -12,7 +12,7 @@ public class Brick : ColorObject
 
     private void OnDisable()
     {
-        Invoke("SetActive", 3.5f);
+        Invoke("SetActive", 5f);
     }
 
     void SetActive()

@@ -20,12 +20,14 @@ public class BotController : Character
     }
     private void Update()
     {
-        Debug.Log(myNavMeshAgent.remainingDistance);
-    if (myNavMeshAgent.remainingDistance <= 0.1f)
+        if (myNavMeshAgent.remainingDistance <= 0.1f)
         {
             SeekBrickPoint();
         }
+        if(targetNumBrick == Random.Range(10,20))
+        {
 
+        }
     }
 
 

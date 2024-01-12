@@ -21,6 +21,7 @@ public class SpawnController : MonoBehaviour
     public List<Vector3> rootPos = new List<Vector3>();
     public List<Vector3> botPos = new List<Vector3>();
     public List<Brick> brick = new List<Brick>();
+    public List<Transform> Stage = new List<Transform>();
     [Range(1, 10)]
     public int width, height;
     public Brick brickPrefab;
@@ -48,14 +49,14 @@ public class SpawnController : MonoBehaviour
 
     void SpawnBrick()
     {
-        for (int i = -4; i < width; i++)
+        for (int i = -5; i < width; i++)
         {
-            for (int j = -4; j < height; j++)
+            for (int j = -5; j < height; j++)
             {
                 for (int k = 0; k < rootPos.Count; k++)
                 {
                     Brick bricks = Instantiate(brickPrefab, rootPos[k], transform.rotation, transform);
-                    Vector3 newpos = new Vector3(rootPos[k].x + (i * 1.25f), rootPos[k].y + 0.5f, rootPos[k].z + (j * 1.25f));
+                    Vector3 newpos = new Vector3(rootPos[k].x + (i * 1.75f), rootPos[k].y + 0.5f, rootPos[k].z + (j * 1.75f));
                     bricks.transform.position = newpos;
                     brick.Add(bricks);
                 }
