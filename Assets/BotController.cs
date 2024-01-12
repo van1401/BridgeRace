@@ -7,16 +7,15 @@ using UnityEngine.UIElements;
 public class BotController : Character
 {
     [SerializeField] NavMeshAgent myNavMeshAgent;
-    [SerializeField] Vector3 destination;
+    [SerializeField] Transform destination;
     public int targetNumBrick;
-
+    public int numberBrickCollected = 0;
 
 
 
     public void Start()
     {
         targetNumBrick = Random.Range(10, 20);
-        //myNavMeshAgent.SetDestination(destination);
     }
     private void Update()
     {
@@ -24,9 +23,10 @@ public class BotController : Character
         {
             SeekBrickPoint();
         }
-        if(targetNumBrick == Random.Range(10,20))
+        if(targetNumBrick >= Random.Range(10,20))
         {
-
+            Transform target = GameObject.Find("FinishBox").transform;
+            myNavMeshAgent.SetDestination(target.position);
         }
     }
 
@@ -41,9 +41,32 @@ public class BotController : Character
             {
                 brick.gameObject.SetActive(false);
                 AddBrick();
+                if (numberBrickCollected <= targetNumBrick)
+                {
+                    SeekBrickPoint();
+                }
+                else
+                {
+                    targetNumBrick = Random.Range(10, 20);
+                    myNavMeshAgent.destination = destination.position;
+                }
             }
         }
     }
+
+    void SeekTarget()
+    {
+        if (SpawnController.Instance.Stage[0] == true && targetNumBrick >=0)
+        {
+            SeekBrickPoint();
+        }
+        else if (SpawnController.Instance.Stage[0] != false && targetNumBrick >=0)
+        {
+
+        }
+
+    }
+
 
     void SeekBrickPoint()
     {

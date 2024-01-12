@@ -305,8 +305,9 @@ MonoBehaviour:
   brickHolder: {fileID: 2590151368803483684}
   skin: {fileID: 2590151368359326806}
   myNavMeshAgent: {fileID: 2590151369006005218}
-  destination: {x: 0, y: 30, z: 96}
+  destination: {fileID: 0}
   targetNumBrick: 0
+  numberBrickCollected: 0
 --- !u!195 &2590151369006005218
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public enum ColorType
 
 public class SpawnController : MonoBehaviour
 {
-    public List<Vector3> rootPos = new List<Vector3>();
     public List<Vector3> botPos = new List<Vector3>();
     public List<Brick> brick = new List<Brick>();
     public List<Transform> Stage = new List<Transform>();
@@ -53,10 +52,10 @@ public class SpawnController : MonoBehaviour
         {
             for (int j = -5; j < height; j++)
             {
-                for (int k = 0; k < rootPos.Count; k++)
+                for (int k = 0; k < Stage.Count; k++)
                 {
-                    Brick bricks = Instantiate(brickPrefab, rootPos[k], transform.rotation, transform);
-                    Vector3 newpos = new Vector3(rootPos[k].x + (i * 1.75f), rootPos[k].y + 0.5f, rootPos[k].z + (j * 1.75f));
+                    Brick bricks = Instantiate(brickPrefab, Stage[k].transform.position, transform.rotation, transform);
+                    Vector3 newpos = new Vector3(Stage[k].transform.position.x + (i * 2.00f), Stage[k].transform.position.y + 0.5f, Stage[k].transform.position.z + (j * 2.00f));
                     bricks.transform.position = newpos;
                     brick.Add(bricks);
                 }
@@ -70,7 +69,7 @@ public class SpawnController : MonoBehaviour
         int randomNumber = Random.Range(4, 7); // tạo số random từ 2 ~ 6
         for (int i = 0; i < botPos.Count; i++) // Vòng lặp for dùng để đếm bot
         {
-            var bot = Instantiate(botPrefab, botPos[i], transform.rotation); // sinh ra bot
+            var bot = Instantiate(botPrefab, botPos[i], transform.rotation, transform);
             while (getColor.Contains(randomNumber)) // get màu chứa số ngẫu nhiên từ 2 ~ 6
             {
                 randomNumber = Random.Range(4, 7); // random số để chọn màu

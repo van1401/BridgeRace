@@ -8,6 +8,7 @@ TagManager:
   - Brick
   - BlueBrick
   - Stage
+  - FinishBox
   layers:
   - Default
   - TransparentFX
