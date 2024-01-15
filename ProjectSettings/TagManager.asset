@@ -6,9 +6,11 @@ TagManager:
   tags:
   - Floor
   - Brick
-  - BlueBrick
   - Stage
   - FinishBox
+  - Bridge
+  - Stage2
+  - Stage1
   layers:
   - Default
   - TransparentFX

@@ -267,6 +267,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage_2
       objectReference: {fileID: 0}
+    - target: {fileID: 7896904295216673994, guid: d9efebfabc1a1294bb7f5702334a8679, type: 3}
+      propertyPath: m_TagString
+      value: Stage1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9efebfabc1a1294bb7f5702334a8679, type: 3}
 --- !u!1 &705507993
@@ -430,6 +434,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stage_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7896904295216673994, guid: f664ef1bbce3bd44d915aa6ef86f5bd0, type: 3}
+      propertyPath: m_TagString
+      value: Stage
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f664ef1bbce3bd44d915aa6ef86f5bd0, type: 3}
 --- !u!1001 &817827208
@@ -486,6 +494,10 @@ PrefabInstance:
     - target: {fileID: 7896904295216673994, guid: 899cd5c0390f5bc4794a4a8509b41b58, type: 3}
       propertyPath: m_Name
       value: Stage_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896904295216673994, guid: 899cd5c0390f5bc4794a4a8509b41b58, type: 3}
+      propertyPath: m_TagString
+      value: Stage2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 899cd5c0390f5bc4794a4a8509b41b58, type: 3}
@@ -619,6 +631,24 @@ Transform:
   m_Father: {fileID: 1698880449}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &930007694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7010277737660162260, guid: f664ef1bbce3bd44d915aa6ef86f5bd0, type: 3}
+  m_PrefabInstance: {fileID: 727410052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &930007696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930007694}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,11 +997,13 @@ MonoBehaviour:
   - {x: -2, y: 1, z: -12}
   - {x: 0, y: 1, z: -12}
   - {x: 2, y: 1, z: -12}
-  brick: []
   Stage:
   - {fileID: 2064457637}
   - {fileID: 919030506}
   - {fileID: 105745822}
+  BrickInStage1: []
+  BrickInStage2: []
+  BrickInStage3: []
   width: 6
   height: 6
   brickPrefab: {fileID: 6446262956845603252, guid: 6d06512195d55614a90f41cf0c2514d6, type: 3}

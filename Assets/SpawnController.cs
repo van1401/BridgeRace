@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using LTAUnityBase.Base.DesignPattern;
+using Unity.VisualScripting;
 
 public enum ColorType
 {
@@ -19,13 +20,18 @@ public enum ColorType
 public class SpawnController : MonoBehaviour
 {
     public List<Vector3> botPos = new List<Vector3>();
-    public List<Brick> brick = new List<Brick>();
     public List<Transform> Stage = new List<Transform>();
+    public List<Brick> BrickInStage1 = new List<Brick>();
+    public List<Brick> BrickInStage2 = new List<Brick>();
+    public List<Brick> BrickInStage3 = new List<Brick>();
+
+
     [Range(1, 10)]
     public int width, height;
     public Brick brickPrefab;
     public BotController botPrefab;
     public static SpawnController Instance;
+    private Brick bricks;
 
 
 
@@ -41,28 +47,9 @@ public class SpawnController : MonoBehaviour
 
     void Start()
     {
-        SpawnBrick();
         SpawnBot();
+        SpawnBrick();
     }
-
-
-    void SpawnBrick()
-    {
-        for (int i = -5; i < width; i++)
-        {
-            for (int j = -5; j < height; j++)
-            {
-                for (int k = 0; k < Stage.Count; k++)
-                {
-                    Brick bricks = Instantiate(brickPrefab, Stage[k].transform.position, transform.rotation, transform);
-                    Vector3 newpos = new Vector3(Stage[k].transform.position.x + (i * 2.00f), Stage[k].transform.position.y + 0.5f, Stage[k].transform.position.z + (j * 2.00f));
-                    bricks.transform.position = newpos;
-                    brick.Add(bricks);
-                }
-            }
-        }
-    }
-
     void SpawnBot()
     {
         List<int> getColor = new List<int>(); //Tạo List get màu 
@@ -76,6 +63,44 @@ public class SpawnController : MonoBehaviour
             }
             getColor.Add(randomNumber); //sau khi bỏ số ra thì chọn 1 số mới
             bot.ChangeColor((ColorType)randomNumber); // đổi màu bot bằng số 
+        }
+    }
+
+    void SpawnBrick()
+    {
+        //for (int k = 0; k < Stage.Count; k++)
+        //{
+
+        //}
+        for (int i = -5; i < width; i++)
+        {
+            for (int j = -4; j < height; j++)
+            {
+                bricks = Instantiate(brickPrefab, Stage[0].transform.position, transform.rotation, transform);
+                Vector3 newpos = new Vector3(Stage[0].transform.position.x + (i * 2.00f), Stage[0].transform.position.y + 0.5f, Stage[0].transform.position.z + (j * 2.00f));
+                bricks.transform.position = newpos;
+                BrickInStage1.Add(bricks);
+            }
+        }
+        for (int i = -5; i < width; i++)
+        {
+            for (int j = -4; j < height; j++)
+            {
+                bricks = Instantiate(brickPrefab, Stage[1].transform.position, transform.rotation, transform);
+                Vector3 newpos = new Vector3(Stage[1].transform.position.x + (i * 2.00f), Stage[1].transform.position.y + 0.5f, Stage[1].transform.position.z + (j * 2.00f));
+                bricks.transform.position = newpos;
+                BrickInStage2.Add(bricks);
+            }
+        }
+        for (int i = -5; i < width; i++)
+        {
+            for (int j = -4; j < height; j++)
+            {
+                bricks = Instantiate(brickPrefab, Stage[2].transform.position, transform.rotation, transform);
+                Vector3 newpos = new Vector3(Stage[2].transform.position.x + (i * 2.00f), Stage[2].transform.position.y + 0.5f, Stage[2].transform.position.z + (j * 2.00f));
+                bricks.transform.position = newpos;
+                BrickInStage3.Add(bricks);
+            }
         }
     }
 

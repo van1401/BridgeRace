@@ -5,13 +5,13 @@ using UnityEngine;
 public class Character : ColorObject
 {
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] LayerMask stepLayer;
+    public LayerMask stepLayer;
     [SerializeField] Rigidbody rb;
 
-    private List<PlayerBrick> playerBricks = new List<PlayerBrick>();
-    [SerializeField] PlayerBrick playerBrickPrefab;
-    [SerializeField] Transform brickHolder;
-    [SerializeField] protected Transform skin;
+    protected List<PlayerBrick> playerBricks = new List<PlayerBrick>();
+    public PlayerBrick playerBrickPrefab;
+    public Transform brickHolder;
+    public Transform skin;
 
 
     private void Start()
@@ -32,7 +32,7 @@ public class Character : ColorObject
         playerBricks.Add(playerBrick);
     }
 
-    void RemoveBrick()
+    public void RemoveBrick()
     {
         if (playerBricks.Count > 0)
         {

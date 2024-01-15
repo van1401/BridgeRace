@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -10,23 +11,18 @@ public class BotController : Character
     [SerializeField] Transform destination;
     public int targetNumBrick;
     public int numberBrickCollected = 0;
-
-
+    private int currentStage;
 
     public void Start()
     {
         targetNumBrick = Random.Range(10, 20);
+
     }
     private void Update()
     {
         if (myNavMeshAgent.remainingDistance <= 0.1f)
         {
             SeekBrickPoint();
-        }
-        if(targetNumBrick >= Random.Range(10,20))
-        {
-            Transform target = GameObject.Find("FinishBox").transform;
-            myNavMeshAgent.SetDestination(target.position);
         }
     }
 
@@ -44,38 +40,33 @@ public class BotController : Character
                 if (numberBrickCollected <= targetNumBrick)
                 {
                     SeekBrickPoint();
+                    numberBrickCollected += 1;
                 }
                 else
                 {
-                    targetNumBrick = Random.Range(10, 20);
-                    myNavMeshAgent.destination = destination.position;
+                    myNavMeshAgent.destination = GameObject.Find("FinishBox").transform.position;
                 }
             }
         }
-    }
-
-    void SeekTarget()
-    {
-        if (SpawnController.Instance.Stage[0] == true && targetNumBrick >=0)
-        {
-            SeekBrickPoint();
-        }
-        else if (SpawnController.Instance.Stage[0] != false && targetNumBrick >=0)
+        if (other.CompareTag("Bridge"))
         {
 
         }
-
     }
+
 
 
     void SeekBrickPoint()
     {
-        var target = GetClosestBrick(spawnController.Instance.brick);
+        var target = GetClosestBrick(spawnController.Instance.BrickInStage1);
         if (target == null)
         {
             return;
         }
-        myNavMeshAgent.destination = target.position;
+        if (currentStage == 0)
+        {
+            myNavMeshAgent.destination = target.position;
+        }
     }
 
     Transform GetClosestBrick(List<Brick> brick)
